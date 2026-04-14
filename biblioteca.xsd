@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Elemento raíz -->
+    <xs:element name="biblioteca">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="libro" maxOccurs="unbounded">
+                    <xs:complexType>                     
+                        <!-- Contenido interno -->
+                        <xs:sequence>
+                            <xs:element name="titulo" type="xs:string"/>
+                            <xs:element name="autor" type="xs:string"/>
+                            <xs:element name="publicacion" type="xs:integer"/>
+                            <!-- Precio con atributo -->
+                            <xs:element name="precio">
+                                <xs:complexType mixed="true">
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:decimal">
+                                            <xs:attribute name="moneda" type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <!-- Atributos del libro -->
+                        <xs:attribute name="id" type="xs:integer" use="required"/>
+                        <xs:attribute name="categoria" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="programacion"/>
+                                    <xs:enumeration value="sistemas"/>
+                                    <xs:enumeration value="desarrollo web"/>
+                                    <xs:enumeration value="bases de datos"/>
+                                    <xs:enumeration value="IA"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>                       
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>   
+</xs:schema>
